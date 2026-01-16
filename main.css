@@ -148,6 +148,19 @@ article {
   margin-top: 1rem;
 }
 
+article h3 {
+text-align: left;
+  color: #c4c4c4;
+  margin-bottom: 1.5rem;
+}
+
+article div {
+  text-align: right;
+  margin-top: 1rem;
+  font-style: italic;
+  color: #f5f6f6;
+}
+
 article img {
   max-width: 100%; /* Ensures responsiveness */
   height: auto;
