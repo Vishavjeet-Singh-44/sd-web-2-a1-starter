@@ -73,4 +73,41 @@ renderByAge(characters, 50, "age-filter-list");
 
 // 5. Enhance your rendering functions from exercises 3 and 4 with error handling logic. Before accessing the name property of each character object, check whether the "name" property exists. If a character object is missing the name property, use console.error() to log a descriptive error message to the console, and dynamically create and display the error message in the HTML div element with id "error-messages".
 
+
+function renderWithValidation(array, listId, errorId) {
+  const listElement = document.getElementById(listId);
+  const errorElement = document.getElementById(errorId);
+
+  array.forEach(char => {
+    if (char.name) {
+      // If name exists, add it to the UI
+      const li = document.createElement("li");
+      li.textContent = char.name;
+      listElement.appendChild(li);
+    } else {
+      // If name is missing, log the error and show it on the page
+      const errorMsg = `Error: Character with ID ${char.id} is missing a name property.`;
+      console.error(errorMsg);
+      
+      const errorDiv = document.createElement("div");
+      errorDiv.className = "error-message";
+      errorDiv.textContent = errorMsg;
+      errorElement.appendChild(errorDiv);
+    }
+  });
+}
+renderWithValidation(characters, "error-handling-list", "error-messages");
+
+
 // 6. Create a second array called "brokenCharacters" that intentionally contains objects with missing name properties (e.g., objects with only id and age). Pass this broken array to your error-handling functions from exercise 5. Verify that your error handling correctly identifies the missing name properties, logs appropriate error messages to the console, and displays those error messages in the HTML div element with id "broken-array-errors".
+
+
+const brokenCharacters = [
+  { id: 11, name: "Boba Fett", age: 35 },
+  { id: 12, age: 20 }, // Missing name
+  { id: 13, name: "Lando Calrissian", age: 30 },
+  { id: 14, age: 50 }, // Missing name
+  { id: 15, name: "Admiral Ackbar", age: 60 }
+];
+
+renderWithValidation(brokenCharacters, "broken-array-list", "broken-array-errors");
