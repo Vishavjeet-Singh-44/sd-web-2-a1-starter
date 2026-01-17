@@ -44,7 +44,32 @@ youngCharacters.forEach(char => {
 
 // 3. Build a reusable function that accepts an array of character objects as a parameter. Inside the function, iterate through the array and extract each character's name property. Dynamically generate <li> elements for each name and append them to a target HTML list element. Call this function with the characters array and render the results in the unordered list with id "function-list".
 
+
+function renderList(array, targetId) {
+  const targetElement = document.getElementById(targetId);
+  array.forEach(char => {
+    const li = document.createElement("li");
+    li.textContent = char.name;
+    targetElement.appendChild(li);
+  });
+}
+renderList(characters, "function-list");
+
+
 // 4. Write a function that accepts two parameters: an array of character objects and a numeric age threshold. Inside the function, filter the array to include only characters whose age is below the threshold value. For each filtered character, create an <li> element with their name and append it to the target list. Call this function and render the results in the unordered list with id "age-filter-list".
+
+
+function renderByAge(array, threshold, targetId) {
+  const targetElement = document.getElementById(targetId);
+  const filtered = array.filter(char => char.age < threshold);
+  filtered.forEach(char => {
+    const li = document.createElement("li");
+    li.textContent = `${char.name} - ${char.age}`;
+    targetElement.appendChild(li);
+  });
+}
+renderByAge(characters, 50, "age-filter-list");
+
 
 // 5. Enhance your rendering functions from exercises 3 and 4 with error handling logic. Before accessing the name property of each character object, check whether the "name" property exists. If a character object is missing the name property, use console.error() to log a descriptive error message to the console, and dynamically create and display the error message in the HTML div element with id "error-messages".
 
